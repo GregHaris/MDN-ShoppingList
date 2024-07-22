@@ -12,6 +12,7 @@ addItemBtn.addEventListener("click", () => {
   let item = document.createElement("li");
   const itemSpan = document.createElement("span");
   const itemDeleteBtn = document.createElement("button");
+  itemDeleteBtn.setAttribute("class", "itemDeleteBtn");
 
   item.append(itemSpan, itemDeleteBtn);
 
@@ -32,6 +33,16 @@ addItemBtn.addEventListener("click", () => {
   }
 
   ListItemInput.value = "";
+
+  // ItemDeleteButton deletes its associated item if no longer needed
+  listItems.addEventListener("click", (event) => {
+    if (event.target.classList.contains("itemDeleteBtn")) {
+      const listItem = event.target.closest("li");
+      if (listItem) {
+        listItem.remove();
+      }
+    }
+  });
 });
 
 ListItemInput.addEventListener("keypress", (e) => {
